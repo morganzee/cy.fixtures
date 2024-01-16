@@ -32,3 +32,41 @@ describe ('My first test', () => {
     })
 
 })
+
+
+//This line holds another code 
+
+
+describe ('My first test', () => {
+    beforeEach(() => {
+    // Prevent unhandled exceptions from failing the test
+        Cypress.on("uncaught:exception", (err, runnable) => {
+            // Returning false here prevents Cypress from failing the test on unhandled exceptions
+            return false
+        })
+        cy.visit("/")
+    })
+
+    it ('Visit amazon one', () => {
+        cy.fixture("elements").then((loc) => {
+            cy.searchAnItem(loc.bag)
+            cy.ClickSearchButton()
+        }) 
+           //cy.wait(5000)
+    })
+
+    it ('visit amazon two', () => {
+        cy.fixture("elements").then((loc) => {
+            cy.searchAnItem(loc.iphone)
+            cy.ClickSearchButton()
+        })
+     })
+     
+    it ('visit amazon three', () => {
+        cy.fixture("elements").then((loc) => {
+            cy.searchAnItem(loc.sneakers)
+            cy.ClickSearchButton()
+        }) 
+    })
+
+})
